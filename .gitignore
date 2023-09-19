@@ -14,9 +14,6 @@ changelog.txt
 # Tests
 /ozzie
 
-# Docker
-core
-
 # Coverage report
 /coverage
 
@@ -94,7 +91,6 @@ local.properties
 **/ios/**/profile
 **/ios/**/xcuserdata
 **/ios/.generated/
-**/ios/Podfile.lock
 **/ios/Flutter/App.framework
 **/ios/Flutter/Flutter.framework
 **/ios/Flutter/Generated.xcconfig
