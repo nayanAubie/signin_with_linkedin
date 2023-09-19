@@ -38,7 +38,7 @@ class _LinkedInWebViewPageState extends State<LinkedInWebViewPage> {
         NavigationDelegate(
           onNavigationRequest: (request) async {
             final isRedirect =
-                request.url.startsWith(ApiService.instance.config.redirectUrl);
+                request.url.startsWith(LinkedInApi.instance.config.redirectUrl);
             if (isRedirect) {
               authorizeUser(request.url);
               return NavigationDecision.prevent;
@@ -47,21 +47,21 @@ class _LinkedInWebViewPageState extends State<LinkedInWebViewPage> {
           },
         ),
       )
-      ..loadRequest(Uri.parse(ApiService.instance.config.authorizationUrl));
+      ..loadRequest(Uri.parse(LinkedInApi.instance.config.authorizationUrl));
   }
 
   Future<void> authorizeUser(String url) async {
     try {
       final authCode = url.split('?').last.split('&').first.split('=').last;
       final accessTokenData =
-          await ApiService.instance.getAccessToken(code: authCode);
+          await LinkedInApi.instance.getAccessToken(code: authCode);
       if (!widget.getUserProfile && mounted) {
         Navigator.of(context).pop(accessTokenData);
         return;
       }
       if (accessTokenData.tokenType != null &&
           accessTokenData.accessToken != null) {
-        final userInfo = await ApiService.instance.getUserInfo(
+        final userInfo = await LinkedInApi.instance.getUserInfo(
           tokenType: accessTokenData.tokenType!,
           token: accessTokenData.accessToken!,
         );

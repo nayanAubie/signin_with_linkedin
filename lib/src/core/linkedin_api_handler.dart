@@ -5,10 +5,10 @@ import 'package:http/http.dart';
 import '../../signin_with_linkedin.dart';
 
 /// Manages all the API calls and response handling
-final class ApiService {
-  ApiService._();
+final class LinkedInApi {
+  LinkedInApi._();
 
-  static final instance = ApiService._();
+  static final instance = LinkedInApi._();
 
   final _client = Client();
 
