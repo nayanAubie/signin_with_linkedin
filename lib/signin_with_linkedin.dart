@@ -16,6 +16,13 @@ export 'src/ui/linkedin_web_view_page.dart';
 final class SignInWithLinkedIn {
   SignInWithLinkedIn._();
 
+  /// Sign in with LinkedIn.
+  ///
+  /// Provide callback [onGetAuthToken] to get access token related data
+  /// Provide callback [onGetUserProfile] if you want to get user profile data
+  /// Provide callback [onSignInError] if you want to access error
+  ///
+  /// Customize the [appBar] for LinkedIn web view page
   static Future<void> signIn(
     BuildContext context, {
     required LinkedInConfig config,
@@ -43,6 +50,7 @@ final class SignInWithLinkedIn {
     }
   }
 
+  /// Logout from LinkedIn account
   static Future<bool> logout() async {
     return WebViewCookieManager().clearCookies();
   }

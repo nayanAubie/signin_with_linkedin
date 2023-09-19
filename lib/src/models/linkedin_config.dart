@@ -1,5 +1,7 @@
 import 'package:uuid/uuid.dart';
 
+/// LinkedIn configuration class that helps to make initial url and API calls
+/// for user authorization
 final class LinkedInConfig {
   final String clientId;
   final String clientSecret;

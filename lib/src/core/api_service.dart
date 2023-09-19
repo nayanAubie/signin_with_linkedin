@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 
 import '../../signin_with_linkedin.dart';
 
+/// Manages all the API calls and response handling
 final class ApiService {
   ApiService._();
 

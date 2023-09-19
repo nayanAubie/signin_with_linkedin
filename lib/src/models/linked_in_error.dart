@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// Common error class to throw exceptions
 class LinkedInError extends Equatable implements Exception {
   final int? errorCode;
   final String? message;

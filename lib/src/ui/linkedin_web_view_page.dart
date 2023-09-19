@@ -9,6 +9,8 @@ typedef OnGetAuthToken = void Function(LinkedInAccessToken data);
 typedef OnGetUserProfile = void Function(LinkedInUser user);
 typedef OnSignInError = void Function(LinkedInError error);
 
+/// Web view page that handles url navigation and get the auth code when user
+/// sign in successfully and then call access token and user profile API.
 class LinkedInWebViewPage extends StatefulWidget {
   final bool getUserProfile;
   final PreferredSizeWidget? appBar;
