@@ -5,7 +5,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import 'signin_with_linkedin.dart';
 
-export 'src/core/api_service.dart';
+export 'src/core/linkedin_api_handler.dart';
 export 'src/models/linked_in_error.dart';
 export 'src/models/linkedin_access_token.dart';
 export 'src/models/linkedin_config.dart';
@@ -31,7 +31,7 @@ final class SignInWithLinkedIn {
     OnSignInError? onSignInError,
     PreferredSizeWidget? appBar,
   }) async {
-    ApiService.instance.config = config;
+    LinkedInApi.instance.config = config;
     final result = await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LinkedInWebViewPage(
