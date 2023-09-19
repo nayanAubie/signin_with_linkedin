@@ -1,39 +1,73 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+A Flutter package that helps to <b>Sign in with LinkedIn</b>
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+## Overview
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- This package uses the `v2` flow of Sign in - [Sign In with LinkedIn using OpenID Connect]
+- The old flow of [Sign In with LinkedIn] has been deprecated.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- You must have one LinkedIn account with company page. Company page is required to create and verify your app.
+  - [Create your company page] if you don't have.
+- Login to the [LinkedIn Developer] to create an app.
+
+## Create an app on LinkedIn
+- Go to the [My Apps] and click on <b>Create app</b>.
+- You need to verify the created app by tap on verification link by login to the company account of LinkedIn.
+- After that, refresh the `Settings` tab. you should see `Verified` with the date in App Settings.
+- Inside the `Auth` tab, set the `Authorized redirect URL` for the app.
+- Inside the `Products` tab, `Request access` for `Sign In with LinkedIn using OpenID Connect`
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+- Replace the below values
 
 ```dart
-const like = 'sample';
+// Modify the "scope" below as per your need
+  final _linkedInConfig = LinkedInConfig(
+    clientId: '<<CLIENT ID>>',
+    clientSecret: '<<CLIENT SECRET>>',
+    redirectUrl: '<<REDIRECT URL>>',
+    scope: ['openid', 'profile', 'email'],
+  );
 ```
 
-## Additional information
+- Call the `signIn` method.
+- `onGetUserProfile` is required to get user profile data.
+- Set `onGetAuthToken` callback if you want to use access token related data.
+  
+```dart
+SignInWithLinkedIn.signIn(
+    context,
+    config: _linkedInConfig,
+    onGetAuthToken: (data) {
+        log('Auth token data: ${data.toJson()}');
+    },
+    onGetUserProfile: (user) {
+        log('LinkedIn User: ${user.toJson()}');
+    },
+    onSignInError: (error) {
+        log('Error on sign in: $error');
+    },
+);
+```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- Logout from the account
+
+```dart
+await SignInWithLinkedIn.logout();
+```
+
+## Sign in button
+
+- We have not provided any button/widget for `Sign in with LinkedIn`. You can create your own UI for the sign in button.
+- You can download button image from [Image Resources]
+
+---
+
+[Sign In with LinkedIn using OpenID Connect]: https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2
+[Sign In with LinkedIn]: https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin
+[LinkedIn Developer]: https://developer.linkedin.com/
+[Create your company page]: https://www.linkedin.com/company/setup/new/
+[My Apps]: https://www.linkedin.com/developers/apps
+[Image Resources]: https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2#image-resources
