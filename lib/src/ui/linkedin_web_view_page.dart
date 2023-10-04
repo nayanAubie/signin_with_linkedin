@@ -6,7 +6,10 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../signin_with_linkedin.dart';
 
 typedef OnGetAuthToken = void Function(LinkedInAccessToken data);
-typedef OnGetUserProfile = void Function(LinkedInUser user);
+typedef OnGetUserProfile = void Function(
+  LinkedInAccessToken tokenData,
+  LinkedInUser user,
+);
 typedef OnSignInError = void Function(LinkedInError error);
 
 /// Web view page that handles url navigation and get the auth code when user
@@ -65,7 +68,7 @@ class _LinkedInWebViewPageState extends State<LinkedInWebViewPage> {
           tokenType: accessTokenData.tokenType!,
           token: accessTokenData.accessToken!,
         );
-        if (mounted) Navigator.of(context).pop(userInfo);
+        if (mounted) Navigator.of(context).pop([accessTokenData, userInfo]);
       }
     } catch (e, stackTrace) {
       log(e.toString(), stackTrace: stackTrace);

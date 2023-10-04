@@ -56,7 +56,8 @@ class _SignInWithLinkedInPageState extends State<SignInWithLinkedInPage> {
                 SignInWithLinkedIn.signIn(
                   context,
                   config: _linkedInConfig,
-                  onGetUserProfile: (user) {
+                  onGetUserProfile: (tokenData, user) {
+                    log('Auth token data: ${tokenData.toJson()}');
                     log('LinkedIn User: ${user.toJson()}');
                     setState(() => _linkedInUser = user);
                   },
