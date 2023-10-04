@@ -43,8 +43,8 @@ final class SignInWithLinkedIn {
     );
     if (result is LinkedInAccessToken) {
       onGetAuthToken?.call(result);
-    } else if (result is LinkedInUser) {
-      onGetUserProfile?.call(result);
+    } else if (result is List) {
+      onGetUserProfile?.call(result[0], result[1]);
     } else if (result is LinkedInError) {
       onSignInError?.call(result);
     }
