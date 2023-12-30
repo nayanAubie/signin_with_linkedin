@@ -1,3 +1,7 @@
+## 1.0.0
+
+- Added Flutter web support
+
 ## 0.0.3
 
 - Set access token data in `onGetUserProfile` callback

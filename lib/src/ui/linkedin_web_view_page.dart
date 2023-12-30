@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../signin_with_linkedin.dart';
+import '../core/authorize_user.dart';
 
 typedef OnGetAuthToken = void Function(LinkedInAccessToken data);
 typedef OnGetUserProfile = void Function(
@@ -15,12 +14,12 @@ typedef OnSignInError = void Function(LinkedInError error);
 /// Web view page that handles url navigation and get the auth code when user
 /// sign in successfully and then call access token and user profile API.
 class LinkedInWebViewPage extends StatefulWidget {
-  final bool getUserProfile;
+  final OnGetUserProfile? onGetUserProfile;
   final PreferredSizeWidget? appBar;
 
   const LinkedInWebViewPage({
     super.key,
-    required this.getUserProfile,
+    required this.onGetUserProfile,
     this.appBar,
   });
 
@@ -43,7 +42,7 @@ class _LinkedInWebViewPageState extends State<LinkedInWebViewPage> {
             final isRedirect =
                 request.url.startsWith(LinkedInApi.instance.config.redirectUrl);
             if (isRedirect) {
-              authorizeUser(request.url);
+              _manageBack(request);
               return NavigationDecision.prevent;
             }
             return NavigationDecision.navigate;
@@ -53,30 +52,12 @@ class _LinkedInWebViewPageState extends State<LinkedInWebViewPage> {
       ..loadRequest(Uri.parse(LinkedInApi.instance.config.authorizationUrl));
   }
 
-  Future<void> authorizeUser(String url) async {
-    try {
-      final authCode = url.split('?').last.split('&').first.split('=').last;
-      final accessTokenData =
-          await LinkedInApi.instance.getAccessToken(code: authCode);
-      if (!widget.getUserProfile && mounted) {
-        Navigator.of(context).pop(accessTokenData);
-        return;
-      }
-      if (accessTokenData.tokenType != null &&
-          accessTokenData.accessToken != null) {
-        final userInfo = await LinkedInApi.instance.getUserInfo(
-          tokenType: accessTokenData.tokenType!,
-          token: accessTokenData.accessToken!,
-        );
-        if (mounted) Navigator.of(context).pop([accessTokenData, userInfo]);
-      }
-    } catch (e, stackTrace) {
-      log(e.toString(), stackTrace: stackTrace);
-      if (mounted) {
-        Navigator.of(context)
-            .pop(e is LinkedInError ? e : LinkedInError(message: e.toString()));
-      }
-    }
+  Future<void> _manageBack(NavigationRequest request) async {
+    final data = await authorizeUser(
+      request.url,
+      onGetUserProfile: widget.onGetUserProfile,
+    );
+    if (mounted && data != null) Navigator.of(context).pop(data);
   }
 
   @override

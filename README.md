@@ -1,5 +1,7 @@
 A Flutter package that helps to <b>Sign in with LinkedIn</b>
 
+It also supports `Flutter Web`.
+
 ## Overview
 
 - This package uses the `v2` flow of Sign in - [Sign In with LinkedIn using OpenID Connect]
@@ -16,6 +18,7 @@ A Flutter package that helps to <b>Sign in with LinkedIn</b>
 - You need to verify the created app by tap on verification link by login to the company account of LinkedIn.
 - After that, refresh the `Settings` tab. you should see `Verified` with the date in App Settings.
 - Inside the `Auth` tab, set the `Authorized redirect URL` for the app.
+  - Generally, it can be your own website or you can use any other website as well.
 - Inside the `Products` tab, `Request access` for `Sign In with LinkedIn using OpenID Connect`
 
 ## Usage
@@ -58,10 +61,15 @@ SignInWithLinkedIn.signIn(
 await SignInWithLinkedIn.logout();
 ```
 
+## Usage on Flutter Web
+
+- Create a file [`signin_linkedin.html`] in your website's root folder and deploy it on server. It is required to make a callback to dart code after complete the login with LinkedIn on web.
+- Add another redirect URL like : `https://your-website/signin_linkedin.html`
+
 ## Sign in button
 
-- We have not provided any button/widget for `Sign in with LinkedIn`. You can create your own UI for the sign in button.
-- You can download button image from [Image Resources]
+- We've not provided any `button/widget` for `Sign in with LinkedIn`. You can create your own UI for the sign in button.
+- You can download button image from LinkedIn [Image Resources]
 
 ---
 
@@ -71,3 +79,5 @@ await SignInWithLinkedIn.logout();
 [Create your company page]: https://www.linkedin.com/company/setup/new/
 [My Apps]: https://www.linkedin.com/developers/apps
 [Image Resources]: https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2#image-resources
+
+[`signin_linkedin.html`]: example/web/signin_linkedin.html
