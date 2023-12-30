@@ -1,9 +1,9 @@
 library signin_with_linkedin;
 
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import 'signin_with_linkedin.dart';
+import 'src/helper/linkedin_core.dart';
 
 export 'src/core/linkedin_api_handler.dart';
 export 'src/models/linked_in_error.dart';
@@ -12,6 +12,8 @@ export 'src/models/linkedin_config.dart';
 export 'src/models/linkedin_locale.dart';
 export 'src/models/linkedin_user.dart';
 export 'src/ui/linkedin_web_view_page.dart';
+
+final _linkedinCore = LinkedinCore.fromConfig();
 
 final class SignInWithLinkedIn {
   SignInWithLinkedIn._();
@@ -32,26 +34,17 @@ final class SignInWithLinkedIn {
     PreferredSizeWidget? appBar,
   }) async {
     LinkedInApi.instance.config = config;
-    final result = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => LinkedInWebViewPage(
-          appBar: appBar,
-          getUserProfile: onGetUserProfile != null,
-        ),
-        fullscreenDialog: true,
-      ),
+    _linkedinCore.signIn(
+      context,
+      config: config,
+      onGetAuthToken: onGetAuthToken,
+      onGetUserProfile: onGetUserProfile,
+      onSignInError: onSignInError,
     );
-    if (result is LinkedInAccessToken) {
-      onGetAuthToken?.call(result);
-    } else if (result is List) {
-      onGetUserProfile?.call(result[0], result[1]);
-    } else if (result is LinkedInError) {
-      onSignInError?.call(result);
-    }
   }
 
   /// Logout from LinkedIn account
   static Future<bool> logout() async {
-    return WebViewCookieManager().clearCookies();
+    return _linkedinCore.logout();
   }
 }
