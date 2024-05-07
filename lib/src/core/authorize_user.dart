@@ -23,7 +23,6 @@ Future<dynamic> authorizeUser(
         tokenType: accessTokenData.tokenType!,
         token: accessTokenData.accessToken!,
       );
-      onGetUserProfile.call(accessTokenData, userInfo);
       return [accessTokenData, userInfo];
     }
   } catch (e, stackTrace) {
