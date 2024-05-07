@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Fixed issue of `onGetUserProfile` called twice
+
 ## 1.0.0
 
 - Added Flutter web support
