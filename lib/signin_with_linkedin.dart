@@ -1,4 +1,4 @@
-library signin_with_linkedin;
+library;
 
 import 'package:flutter/material.dart';
 
