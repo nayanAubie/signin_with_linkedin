@@ -17,8 +17,7 @@ class LinkedinCore {
     OnGetUserProfile? onGetUserProfile,
     OnSignInError? onSignInError,
     PreferredSizeWidget? appBar,
-  }) async =>
-      throw UnimplementedError();
+  }) async => throw UnimplementedError();
 
   Future<bool> logout() async => throw UnimplementedError();
 }

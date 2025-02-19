@@ -11,8 +11,9 @@ Future<dynamic> authorizeUser(
   OnSignInError? onSignInError,
 }) async {
   try {
-    final accessTokenData =
-        await LinkedInApi.instance.getAccessToken(code: url.authCode);
+    final accessTokenData = await LinkedInApi.instance.getAccessToken(
+      code: url.authCode,
+    );
     if (onGetUserProfile == null) {
       onGetAuthToken?.call(accessTokenData);
       return accessTokenData;

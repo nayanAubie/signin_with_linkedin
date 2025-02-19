@@ -7,17 +7,18 @@ part of 'linkedin_user.dart';
 // **************************************************************************
 
 LinkedInUser _$LinkedInUserFromJson(Map<String, dynamic> json) => LinkedInUser(
-      sub: json['sub'] as String?,
-      emailVerified: json['email_verified'] as bool?,
-      name: json['name'] as String?,
-      locale: json['locale'] == null
+  sub: json['sub'] as String?,
+  emailVerified: json['email_verified'] as bool?,
+  name: json['name'] as String?,
+  locale:
+      json['locale'] == null
           ? null
           : LinkedInLocale.fromJson(json['locale'] as Map<String, dynamic>),
-      givenName: json['given_name'] as String?,
-      familyName: json['family_name'] as String?,
-      email: json['email'] as String?,
-      picture: json['picture'] as String?,
-    );
+  givenName: json['given_name'] as String?,
+  familyName: json['family_name'] as String?,
+  email: json['email'] as String?,
+  picture: json['picture'] as String?,
+);
 
 Map<String, dynamic> _$LinkedInUserToJson(LinkedInUser instance) =>
     <String, dynamic>{

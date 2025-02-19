@@ -34,12 +34,6 @@ class LinkedInAccessToken extends Equatable {
 
   @override
   List<Object?> get props {
-    return [
-      accessToken,
-      expiresIn,
-      scope,
-      tokenType,
-      idToken,
-    ];
+    return [accessToken, expiresIn, scope, tokenType, idToken];
   }
 }

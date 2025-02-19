@@ -44,9 +44,7 @@ class _SignInWithLinkedInPageState extends State<SignInWithLinkedInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign In'),
-      ),
+      appBar: AppBar(title: const Text('Sign In')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

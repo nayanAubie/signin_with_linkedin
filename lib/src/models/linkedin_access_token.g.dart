@@ -16,11 +16,11 @@ LinkedInAccessToken _$LinkedInAccessTokenFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$LinkedInAccessTokenToJson(
-        LinkedInAccessToken instance) =>
-    <String, dynamic>{
-      'access_token': instance.accessToken,
-      'expires_in': instance.expiresIn,
-      'scope': instance.scope,
-      'token_type': instance.tokenType,
-      'id_token': instance.idToken,
-    };
+  LinkedInAccessToken instance,
+) => <String, dynamic>{
+  'access_token': instance.accessToken,
+  'expires_in': instance.expiresIn,
+  'scope': instance.scope,
+  'token_type': instance.tokenType,
+  'id_token': instance.idToken,
+};

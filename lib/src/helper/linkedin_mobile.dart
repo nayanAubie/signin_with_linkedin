@@ -17,10 +17,11 @@ class LinkedinMobile implements LinkedinCore {
     LinkedInApi.instance.config = config;
     final result = await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => LinkedInWebViewPage(
-          appBar: appBar,
-          onGetUserProfile: onGetUserProfile,
-        ),
+        builder:
+            (context) => LinkedInWebViewPage(
+              appBar: appBar,
+              onGetUserProfile: onGetUserProfile,
+            ),
         fullscreenDialog: true,
       ),
     );

@@ -45,11 +45,7 @@ final class LinkedInApi {
     required String token,
   }) async {
     final response = await _client.get(
-      Uri(
-        scheme: 'https',
-        host: 'api.linkedin.com',
-        path: 'v2/userinfo',
-      ),
+      Uri(scheme: 'https', host: 'api.linkedin.com', path: 'v2/userinfo'),
       headers: {'Authorization': '$tokenType $token'},
     );
     final data = json.decode(response.body);
