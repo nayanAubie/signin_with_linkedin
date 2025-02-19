@@ -6,8 +6,8 @@ repository: https://github.com/nayanAubie/signin_with_linkedin
 issue_tracker: https://github.com/nayanAubie/signin_with_linkedin/issues
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-  flutter: ">=3.0.0"
+  sdk: ^3.7.0
+  flutter: '>=3.3.0'
 
 dependencies:
   equatable: ^2.0.7

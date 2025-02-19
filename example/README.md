@@ -1,4 +1,4 @@
-# example
+# com.aubergine.signin_with_linkedin_example
 
 A new Flutter project.
 
