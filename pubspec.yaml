@@ -1,7 +1,7 @@
 name: signin_with_linkedin
 description: A flutter plugin that helps to sign in with linkedin (Social sign in)
-version: 1.0.1
-homepage: https://auberginesolutions.com
+version: 1.1.0
+homepage: https://aubergine.co
 repository: https://github.com/nayanAubie/signin_with_linkedin
 issue_tracker: https://github.com/nayanAubie/signin_with_linkedin/issues
 

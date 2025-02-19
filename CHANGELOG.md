@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Set minimum Dart SDK to `3.7.0`.
+- Upgrade Android platform to use `kts` script.
+
 ## 1.0.1
 
 - Fixed issue of `onGetUserProfile` called twice
