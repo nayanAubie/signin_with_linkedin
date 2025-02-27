@@ -88,7 +88,7 @@ The recommended approach is to obtain the authorization code using the `getAutho
 
 ### Test the flow in the web
 
-This approach is not recommended, but if you still want to test LinkedIn HTTP requests, you can disable web security to bypass CORS limitations. This is only applicable for localhost and will not work in a **production** environment.
+This approach is not recommended, but if you still want to test LinkedIn HTTP requests, you can disable web security to bypass CORS limitations and then call `getAccessToken` and `getUserInfo` methods. This is only applicable for localhost and will not work in a **production** environment.
 
 ```sh
 flutter run -d chrome --web-port=8080 --web-browser-flag "--disable-web-security"
