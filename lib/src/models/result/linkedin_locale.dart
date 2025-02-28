@@ -1,20 +1,26 @@
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'linkedin_locale.g.dart';
-
-@JsonSerializable()
+/// LinkedIn locale for user.
 class LinkedInLocale extends Equatable {
+  /// Country code of the user's locale. e.g. 'US'.
   final String? country;
+
+  /// Language code of the user's locale. e.g. 'en'.
   final String? language;
 
   const LinkedInLocale({this.country, this.language});
 
   factory LinkedInLocale.fromJson(Map<String, dynamic> json) {
-    return _$LinkedInLocaleFromJson(json);
+    return LinkedInLocale(
+      country: json['country'] as String?,
+      language: json['language'] as String?,
+    );
   }
 
-  Map<String, dynamic> toJson() => _$LinkedInLocaleToJson(this);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'country': country,
+    'language': language,
+  };
 
   @override
   bool get stringify => true;

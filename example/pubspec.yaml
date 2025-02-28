@@ -8,13 +8,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  signin_with_linkedin:
+    path: ../
 
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-  signin_with_linkedin:
-    path: ../
 
 flutter:
   uses-material-design: true
