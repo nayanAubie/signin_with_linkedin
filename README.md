@@ -145,7 +145,10 @@ if (authCode != null && !kIsWeb) {
 
 ```dart
 if (tokenInfo != null && !kIsWeb) {
-  final (user, error) = await linkedin.getUserInfo(tokenType: tokenInfo.tokenType, token: tokenInfo.accessToken);
+  final (user, error) = await linkedin.getUserInfo(
+    tokenType: tokenInfo.tokenType,
+    token: tokenInfo.accessToken,
+  );
 
   if (user != null) {
     log('User info: ${user.toJson()}');
@@ -173,7 +176,22 @@ We have not included a predefined Sign in with LinkedIn button or widget. You ca
 
 If needed, you can download the official button image from LinkedIn's [Image Resources].
 
----
+## Setup Example App 📱
+
+The [`example`] app demonstrates all the features supported by this package with providing a practical implementation.
+
+It uses environment variables for the values such as client id, client secret and redirect URL to make it easier to configure the app for different environments.
+
+To set it up, create a `.env/development.env` file in the root of the example project and add your values as shown below:
+
+```ini
+CLIENT_ID=your-apps-client-id
+CLIENT_SECRET=your-apps-client-secret
+REDIRECT_URL=your-apps-redirect-url
+```
+
+Follow [`example`] code for more details on implementation.
+
 
 [Sign In with LinkedIn using OpenID Connect]: https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2
 [Sign In with LinkedIn]: https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin
