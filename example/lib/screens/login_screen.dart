@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:signin_with_linkedin/signin_with_linkedin.dart';
 
+import '../environment.dart';
 import '../widgets/dialog/info_dialog.dart';
 import 'home_screen.dart';
 
@@ -15,9 +16,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   // Modify the "scope" below as per your need
   final _linkedInConfig = LinkedInConfig(
-    clientId: '<<CLIENT ID>>',
-    clientSecret: '<<CLIENT SECRET>>',
-    redirectUrl: '<<REDIRECT URL>>',
+    clientId: Environment.clientId,
+    clientSecret: Environment.clientSecret,
+    redirectUrl: Environment.redirectUrl,
     scope: ['openid', 'profile', 'email'],
   );
 
