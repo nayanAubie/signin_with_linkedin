@@ -1,3 +1,6 @@
+## 2.0.1
+- Added environment variables in `example` app.
+
 ## 2.0.0
 **NEW CHANGES:**
 - Removed deprecated `dart:html` and used `js_interop` for the platform: **web**.
